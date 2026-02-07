@@ -233,3 +233,139 @@
         width: 100%;
     }
 }
+
+
+
+
+
+/* ===== RESPONSIVE: LECTURE PAGE ===== */
+@media (max-width: 1200px) {
+    .lecture-container {
+        grid-template-columns: 250px 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .lecture-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .toc-sidebar {
+        position: static;
+        max-height: none;
+        margin-bottom: 30px;
+        order: 2;
+    }
+    
+    .lecture-content {
+        order: 1;
+    }
+    
+    .lecture-actions-bar {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    
+    .navigation-buttons,
+    .action-buttons {
+        display: flex;
+        width: 100%;
+    }
+    
+    .btn-prev,
+    .btn-next,
+    .btn-print,
+    .btn-download-full {
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .lecture-content {
+        padding: 20px;
+    }
+    
+    .lecture-header {
+        padding: 20px 0;
+        margin-bottom: 20px;
+    }
+    
+    .lecture-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .lecture-meta {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .meta-item {
+        justify-content: flex-start;
+    }
+    
+    .markdown-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .markdown-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .markdown-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .markdown-content pre {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+    
+    .markdown-content .table-container {
+        margin: 15px -20px;
+        border-radius: 0;
+    }
+    
+    .lectures-mini-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .lecture-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .markdown-content {
+        font-size: 0.95rem;
+    }
+    
+    .markdown-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .markdown-content h2 {
+        font-size: 1.3rem;
+    }
+    
+    .markdown-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .markdown-content pre {
+        font-size: 0.85rem;
+        padding: 10px;
+    }
+    
+    .lectures-mini-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons,
+    .navigation-buttons {
+        flex-direction: column;
+    }
+}
