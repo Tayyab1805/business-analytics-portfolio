@@ -1,0 +1,300 @@
+{
+  "semesters": [
+    {
+      "id": 1,
+      "name": "Semester 1",
+      "status": "completed",
+      "description": "Foundation courses in Business Analytics",
+      "courses": [
+        {
+          "id": "BA101",
+          "name": "Business Mathematics",
+          "code": "BA101",
+          "teacher": "Dr. Rajesh Kumar",
+          "teacherEmail": "rajesh.kumar@university.edu",
+          "lectures": 15,
+          "description": "Fundamental mathematical concepts for business analysis",
+          "image": "math.jpg",
+          "color": "#3498db"
+        },
+        {
+          "id": "BA102",
+          "name": "Principles of Management",
+          "code": "BA102",
+          "teacher": "Prof. Anjali Sharma",
+          "teacherEmail": "anjali.sharma@university.edu",
+          "lectures": 12,
+          "description": "Introduction to management principles and practices",
+          "image": "management.jpg",
+          "color": "#e74c3c"
+        },
+        {
+          "id": "BA103",
+          "name": "Business Statistics",
+          "code": "BA103",
+          "teacher": "Dr. Amit Patel",
+          "teacherEmail": "amit.patel@university.edu",
+          "lectures": 18,
+          "description": "Statistical methods for business decision making",
+          "image": "statistics.jpg",
+          "color": "#2ecc71"
+        },
+        {
+          "id": "BA104",
+          "name": "Financial Accounting",
+          "code": "BA104",
+          "teacher": "Prof. Sanjay Verma",
+          "teacherEmail": "sanjay.verma@university.edu",
+          "lectures": 14,
+          "description": "Basics of financial accounting and reporting",
+          "image": "accounting.jpg",
+          "color": "#9b59b6"
+        },
+        {
+          "id": "BA105",
+          "name": "Business Communication",
+          "code": "BA105",
+          "teacher": "Dr. Priya Singh",
+          "teacherEmail": "priya.singh@university.edu",
+          "lectures": 10,
+          "description": "Effective communication in business environment",
+          "image": "communication.jpg",
+          "color": "#f39c12"
+        },
+        {
+          "id": "BA106",
+          "name": "Introduction to Analytics",
+          "code": "BA106",
+          "teacher": "Prof. Vikram Mehta",
+          "teacherEmail": "vikram.mehta@university.edu",
+          "lectures": 16,
+          "description": "Overview of analytics in business context",
+          "image": "analytics.jpg",
+          "color": "#1abc9c"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Semester 2",
+      "status": "completed",
+      "description": "Intermediate analytical techniques",
+      "courses": [
+        {
+          "id": "BA201",
+          "name": "Data Visualization",
+          "code": "BA201",
+          "teacher": "Dr. Neha Gupta",
+          "teacherEmail": "neha.gupta@university.edu",
+          "lectures": 14,
+          "description": "Creating effective visual representations of data",
+          "image": "visualization.jpg",
+          "color": "#3498db"
+        },
+        {
+          "id": "BA202",
+          "name": "Database Management",
+          "code": "BA202",
+          "teacher": "Prof. Ramesh Iyer",
+          "teacherEmail": "ramesh.iyer@university.edu",
+          "lectures": 16,
+          "description": "Design and management of business databases",
+          "image": "database.jpg",
+          "color": "#e74c3c"
+        },
+        {
+          "id": "BA203",
+          "name": "Operations Research",
+          "code": "BA203",
+          "teacher": "Dr. Sunil Rao",
+          "teacherEmail": "sunil.rao@university.edu",
+          "lectures": 18,
+          "description": "Optimization techniques for business problems",
+          "image": "operations.jpg",
+          "color": "#2ecc71"
+        },
+        {
+          "id": "BA204",
+          "name": "Marketing Analytics",
+          "code": "BA204",
+          "teacher": "Prof. Meera Nair",
+          "teacherEmail": "meera.nair@university.edu",
+          "lectures": 12,
+          "description": "Analytical approaches in marketing decisions",
+          "image": "marketing.jpg",
+          "color": "#9b59b6"
+        },
+        {
+          "id": "BA205",
+          "name": "Business Ethics",
+          "code": "BA205",
+          "teacher": "Dr. Arjun Kapoor",
+          "teacherEmail": "arjun.kapoor@university.edu",
+          "lectures": 10,
+          "description": "Ethical considerations in business analytics",
+          "image": "ethics.jpg",
+          "color": "#f39c12"
+        },
+        {
+          "id": "BA206",
+          "name": "Econometrics",
+          "code": "BA206",
+          "teacher": "Prof. Deepak Joshi",
+          "teacherEmail": "deepak.joshi@university.edu",
+          "lectures": 15,
+          "description": "Statistical methods in economics",
+          "image": "econometrics.jpg",
+          "color": "#1abc9c"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Semester 3",
+      "status": "completed",
+      "description": "Advanced analytics and applications",
+      "courses": [
+        {
+          "id": "BA301",
+          "name": "Machine Learning Basics",
+          "code": "BA301",
+          "teacher": "Dr. Kavita Desai",
+          "teacherEmail": "kavita.desai@university.edu",
+          "lectures": 20,
+          "description": "Introduction to machine learning algorithms",
+          "image": "ml.jpg",
+          "color": "#3498db"
+        },
+        {
+          "id": "BA302",
+          "name": "Big Data Analytics",
+          "code": "BA302",
+          "teacher": "Prof. Rajeev Malhotra",
+          "teacherEmail": "rajeev.malhotra@university.edu",
+          "lectures": 16,
+          "description": "Analytics techniques for large datasets",
+          "image": "bigdata.jpg",
+          "color": "#e74c3c"
+        },
+        {
+          "id": "BA303",
+          "name": "Financial Analytics",
+          "code": "BA303",
+          "teacher": "Dr. Anil Sharma",
+          "teacherEmail": "anil.sharma@university.edu",
+          "lectures": 18,
+          "description": "Analytical methods in finance",
+          "image": "financial.jpg",
+          "color": "#2ecc71"
+        },
+        {
+          "id": "BA304",
+          "name": "Predictive Modeling",
+          "code": "BA304",
+          "teacher": "Prof. Smita Patel",
+          "teacherEmail": "smita.patel@university.edu",
+          "lectures": 15,
+          "description": "Building and validating predictive models",
+          "image": "predictive.jpg",
+          "color": "#9b59b6"
+        },
+        {
+          "id": "BA305",
+          "name": "Supply Chain Analytics",
+          "code": "BA305",
+          "teacher": "Dr. Varun Singh",
+          "teacherEmail": "varun.singh@university.edu",
+          "lectures": 14,
+          "description": "Analytics in supply chain management",
+          "image": "supplychain.jpg",
+          "color": "#f39c12"
+        },
+        {
+          "id": "BA306",
+          "name": "Business Intelligence",
+          "code": "BA306",
+          "teacher": "Prof. Nisha Reddy",
+          "teacherEmail": "nisha.reddy@university.edu",
+          "lectures": 12,
+          "description": "Tools and techniques for business intelligence",
+          "image": "bi.jpg",
+          "color": "#1abc9c"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Semester 4",
+      "status": "in-progress",
+      "description": "Specialized analytics and capstone projects",
+      "courses": [
+        {
+          "id": "BA401",
+          "name": "Advanced Machine Learning",
+          "code": "BA401",
+          "teacher": "Dr. Sameer Khan",
+          "teacherEmail": "sameer.khan@university.edu",
+          "lectures": 8,
+          "description": "Advanced ML techniques for business",
+          "image": "advanced-ml.jpg",
+          "color": "#3498db"
+        },
+        {
+          "id": "BA402",
+          "name": "Text Mining & NLP",
+          "code": "BA402",
+          "teacher": "Prof. Ritu Chawla",
+          "teacherEmail": "ritu.chawla@university.edu",
+          "lectures": 6,
+          "description": "Text analytics and natural language processing",
+          "image": "nlp.jpg",
+          "color": "#e74c3c"
+        },
+        {
+          "id": "BA403",
+          "name": "Deep Learning",
+          "code": "BA403",
+          "teacher": "Dr. Alok Mishra",
+          "teacherEmail": "alok.mishra@university.edu",
+          "lectures": 5,
+          "description": "Deep neural networks for business applications",
+          "image": "deeplearning.jpg",
+          "color": "#2ecc71"
+        },
+        {
+          "id": "BA404",
+          "name": "Cloud Analytics",
+          "code": "BA404",
+          "teacher": "Prof. Karan Mehta",
+          "teacherEmail": "karan.mehta@university.edu",
+          "lectures": 7,
+          "description": "Analytics on cloud platforms",
+          "image": "cloud.jpg",
+          "color": "#9b59b6"
+        },
+        {
+          "id": "BA405",
+          "name": "Capstone Project",
+          "code": "BA405",
+          "teacher": "Dr. Sneha Kapoor",
+          "teacherEmail": "sneha.kapoor@university.edu",
+          "lectures": 4,
+          "description": "Real-world analytics project",
+          "image": "capstone.jpg",
+          "color": "#f39c12"
+        },
+        {
+          "id": "BA406",
+          "name": "Ethics in AI",
+          "code": "BA406",
+          "teacher": "Prof. Vikas Jain",
+          "teacherEmail": "vikas.jain@university.edu",
+          "lectures": 3,
+          "description": "Ethical considerations in artificial intelligence",
+          "image": "ai-ethics.jpg",
+          "color": "#1abc9c"
+        }
+      ]
+    }
+  ]
+}

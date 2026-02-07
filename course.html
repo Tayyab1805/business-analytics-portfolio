@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details - Business Analytics Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/course.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="navbar-container"></div>
+
+    <main class="container">
+        <div id="breadcrumb-container"></div>
+
+        <div class="course-detail-header" id="course-header">
+            <div class="course-header-content">
+                <div class="course-icon" id="course-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="course-header-text">
+                    <h1 id="course-name">Loading Course...</h1>
+                    <div class="course-code-large" id="course-code"></div>
+                    <p id="course-description"></p>
+                    <div class="course-stats">
+                        <span class="stat-item">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span id="teacher-name"></span>
+                        </span>
+                        <span class="stat-item">
+                            <i class="fas fa-chalkboard"></i>
+                            <span id="lecture-count">0</span> lectures
+                        </span>
+                        <span class="stat-item">
+                            <i class="fas fa-clock"></i>
+                            <span id="total-hours">0</span> hours
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-teacher-card">
+            <div class="teacher-avatar-large" id="teacher-avatar">JD</div>
+            <div class="teacher-details">
+                <h3 id="teacher-fullname">Loading...</h3>
+                <p>Course Instructor</p>
+                <div class="teacher-contact">
+                    <a href="#" id="teacher-email">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    <a href="#" id="teacher-office">
+                        <i class="fas fa-building"></i> Office Hours
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <section class="course-description">
+            <h2><i class="fas fa-info-circle"></i> Course Description</h2>
+            <p id="full-description">Loading course description...</p>
+            <div class="learning-outcomes">
+                <h3><i class="fas fa-bullseye"></i> Learning Outcomes</h3>
+                <ul id="outcomes-list">
+                    <!-- Will be populated by JavaScript -->
+                </ul>
+            </div>
+        </section>
+
+        <section class="lectures-section">
+            <div class="section-header">
+                <h2><i class="fas fa-chalkboard"></i> Course Lectures</h2>
+                <div class="next-lecture-badge">
+                    <i class="fas fa-arrow-right"></i>
+                    Next Lecture: <span id="next-lecture-number">1</span>
+                </div>
+            </div>
+
+            <div class="lectures-grid" id="lectures-container">
+                <!-- Lectures will be loaded here -->
+            </div>
+
+            <div class="add-lecture-section">
+                <button class="btn-add-lecture" onclick="addNewLecture()">
+                    <i class="fas fa-plus-circle"></i> Add New Lecture
+                </button>
+            </div>
+        </section>
+
+        <section class="course-resources">
+            <h2><i class="fas fa-download"></i> Course Resources</h2>
+            <div class="resources-grid">
+                <a href="#" class="resource-item">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Course Syllabus</span>
+                </a>
+                <a href="#" class="resource-item">
+                    <i class="fas fa-book"></i>
+                    <span>Textbook PDF</span>
+                </a>
+                <a href="#" class="resource-item">
+                    <i class="fas fa-file-excel"></i>
+                    <span>Practice Datasets</span>
+                </a>
+                <a href="#" class="resource-item">
+                    <i class="fas fa-video"></i>
+                    <span>Video Lectures</span>
+                </a>
+                <a href="#" class="resource-item">
+                    <i class="fas fa-code"></i>
+                    <span>Code Examples</span>
+                </a>
+                <a href="#" class="resource-item">
+                    <i class="fas fa-question-circle"></i>
+                    <span>FAQs</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script>
+        // Load components and data
+        Promise.all([
+            fetch('components/navbar.html').then(r => r.text()),
+            fetch('components/breadcrumb.html').then(r => r.text()),
+            fetch('components/footer.html').then(r => r.text()),
+            fetch('data/courses.json').then(r => r.json())
+        ]).then(([navbar, breadcrumb, footer, data]) => {
+            // Set navbar
+            document.getElementById('navbar-container').innerHTML = navbar;
+            
+            // Set breadcrumb
+            document.getElementById('breadcrumb-container').innerHTML = breadcrumb;
+            
+            // Set footer
+            document.getElementById('footer-container').innerHTML = footer;
+            
+            // Get course ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const courseId = urlParams.get('id') || 'BA101';
+            
+            // Find course data
+            let foundCourse = null;
+            let foundSemester = null;
+            
+            for (const semester of data.semesters) {
+                const course = semester.courses.find(c => c.id === courseId);
+                if (course) {
+                    foundCourse = course;
+                    foundSemester = semester;
+                    break;
+                }
+            }
+            
+            if (foundCourse && foundSemester) {
+                displayCourse(foundCourse, foundSemester);
+                updateBreadcrumb([
+                    { name: foundSemester.name, link: `semester.html?id=${foundSemester.id}` },
+                    { name: foundCourse.name }
+                ]);
+            } else {
+                displayError();
+            }
+            
+            // Set active nav
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes('index')) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        function displayCourse(course, semester) {
+            // Update header
+            document.getElementById('course-name').textContent = course.name;
+            document.getElementById('course-code').textContent = course.code;
+            document.getElementById('course-description').textContent = course.description;
+            document.getElementById('teacher-name').textContent = course.teacher.split(' ')[0]; // First name only
+            document.getElementById('lecture-count').textContent = course.lectures;
+            document.getElementById('total-hours').textContent = course.lectures * 1.5;
+            
+            // Update teacher info
+            const initials = course.teacher.split(' ').map(n => n[0]).join('');
+            document.getElementById('teacher-avatar').textContent = initials;
+            document.getElementById('teacher-fullname').textContent = course.teacher;
+            document.getElementById('teacher-email').href = `mailto:${course.teacherEmail}`;
+            
+            // Set course icon color
+            document.getElementById('course-icon').style.background = course.color || '#3498db';
+            
+            // Update description and outcomes
+            document.getElementById('full-description').textContent = course.description;
+            
+            const outcomesList = document.getElementById('outcomes-list');
+            outcomesList.innerHTML = `
+                <li>Understand fundamental concepts of ${course.name.toLowerCase()}</li>
+                <li>Apply analytical techniques to solve business problems</li>
+                <li>Interpret and communicate analytical results effectively</li>
+                <li>Use relevant software tools for analysis</li>
+                <li>Develop critical thinking skills in business context</li>
+            `;
+            
+            // Display lectures
+            displayLectures(course.lectures);
+            
+            // Set next lecture (first incomplete lecture)
+            document.getElementById('next-lecture-number').textContent = 
+                Math.min(course.lectures, 5); // Example: next is lecture 5
+        }
+
+        function displayLectures(totalLectures) {
+            const container = document.getElementById('lectures-container');
+            container.innerHTML = '';
+            
+            // Sample lecture data
+            const lectureTitles = [
+                "Introduction and Course Overview",
+                "Fundamental Concepts and Principles",
+                "Methodologies and Approaches",
+                "Practical Applications - Part 1",
+                "Practical Applications - Part 2",
+                "Data Collection Techniques",
+                "Analysis Methods",
+                "Interpretation of Results",
+                "Case Study Analysis",
+                "Advanced Techniques",
+                "Industry Applications",
+                "Future Trends",
+                "Review Session",
+                "Project Discussion",
+                "Final Assessment Prep"
+            ];
+            
+            for (let i = 1; i <= totalLectures; i++) {
+                const lectureCard = document.createElement('div');
+                lectureCard.className = 'lecture-card';
+                
+                // Determine status
+                let status = 'upcoming';
+                let statusText = 'Upcoming';
+                if (i < 5) {
+                    status = 'completed';
+                    statusText = 'Completed';
+                    lectureCard.classList.add('completed');
+                } else if (i === 5) {
+                    lectureCard.classList.add('upcoming');
+                }
+                
+                const date = new Date();
+                date.setDate(date.getDate() + (i - 5) * 7); // Weekly lectures starting from lecture 5
+                
+                lectureCard.innerHTML = `
+                    <div class="lecture-header">
+                        <div class="lecture-number">${i}</div>
+                        <span class="lecture-status status-${status}">${statusText}</span>
+                    </div>
+                    <h3>Lecture ${i}: ${lectureTitles[i-1] || `Lecture ${i} Title`}</h3>
+                    <p>${getRandomDescription()}</p>
+                    
+                    <div class="lecture-meta">
+                        <span><i class="far fa-calendar"></i> ${date.toLocaleDateString()}</span>
+                        <span><i class="far fa-clock"></i> 1.5 hours</span>
+                    </div>
+                    
+                    <div class="lecture-actions">
+                        <button class="btn-lecture btn-read" onclick="viewLecture(${i})">
+                            <i class="fas fa-eye"></i> Read Notes
+                        </button>
+                        <button class="btn-lecture btn-download" onclick="downloadLecture(${i})">
+                            <i class="fas fa-download"></i> Download PDF
+                        </button>
+                    </div>
+                `;
+                
+                container.appendChild(lectureCard);
+            }
+        }
+
+        function getRandomDescription() {
+            const descriptions = [
+                "This lecture covers essential concepts and foundational knowledge.",
+                "Practical examples and case studies will be discussed in detail.",
+                "Focus on analytical techniques and their business applications.",
+                "Interactive session with problem-solving exercises.",
+                "Advanced topics and emerging trends in the field."
+            ];
+            return descriptions[Math.floor(Math.random() * descriptions.length)];
+        }
+
+        function viewLecture(lectureNumber) {
+            // In Part 3, this will open the lecture.html page
+            alert(`Opening Lecture ${lectureNumber} notes. This will be implemented in Part 3 with markdown support.`);
+            // window.location.href = `lecture.html?course=${courseId}&lecture=${lectureNumber}`;
+        }
+
+        function downloadLecture(lectureNumber) {
+            // In Part 3, this will generate PDF
+            alert(`Downloading Lecture ${lectureNumber} as PDF. This will be implemented in Part 3 with jsPDF.`);
+        }
+
+        function addNewLecture() {
+            const container = document.getElementById('lectures-container');
+            const totalLectures = container.children.length + 1;
+            
+            const lectureCard = document.createElement('div');
+            lectureCard.className = 'lecture-card upcoming';
+            
+            const date = new Date();
+            date.setDate(date.getDate() + 7);
+            
+            lectureCard.innerHTML = `
+                <div class="lecture-header">
+                    <div class="lecture-number">${totalLectures}</div>
+                    <span class="lecture-status status-upcoming">New</span>
+                </div>
+                <h3>Lecture ${totalLectures}: [New Lecture Title]</h3>
+                <p>Add content for this lecture by editing the markdown file.</p>
+                
+                <div class="lecture-meta">
+                    <span><i class="far fa-calendar"></i> ${date.toLocaleDateString()}</span>
+                    <span><i class="far fa-clock"></i> 1.5 hours</span>
+                </div>
+                
+                <div class="lecture-actions">
+                    <button class="btn-lecture btn-read" onclick="viewLecture(${totalLectures})">
+                        <i class="fas fa-edit"></i> Add Content
+                    </button>
+                    <button class="btn-lecture btn-download" disabled>
+                        <i class="fas fa-download"></i> Coming Soon
+                    </button>
+                </div>
+            `;
+            
+            container.appendChild(lectureCard);
+            alert(`New lecture ${totalLectures} added! Edit content/content/course${window.location.search.split('=')[1]}/lecture${totalLectures}.md to add notes.`);
+        }
+
+        function displayError() {
+            document.getElementById('course-name').textContent = 'Course Not Found';
+            document.getElementById('lectures-container').innerHTML = `
+                <div class="empty-lectures">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <h3>Course data not found</h3>
+                    <p>The requested course could not be loaded.</p>
+                    <button class="btn-view" onclick="window.location.href='index.html'">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </button>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<div class="breadcrumb" id="breadcrumb-container">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+</div>
+
+<script>
+    // This will be populated dynamically based on current page
+    function updateBreadcrumb(path) {
+        const container = document.getElementById('breadcrumb-container');
+        if (!container) return;
+        
+        // Clear existing breadcrumb except home
+        while (container.children.length > 1) {
+            container.removeChild(container.lastChild);
+        }
+        
+        // Add path segments
+        path.forEach(segment => {
+            const separator = document.createElement('i');
+            separator.className = 'fas fa-chevron-right';
+            separator.style.margin = '0 10px';
+            separator.style.opacity = '0.5';
+            container.appendChild(separator);
+            
+            if (segment.link) {
+                const link = document.createElement('a');
+                link.href = segment.link;
+                link.textContent = segment.name;
+                container.appendChild(link);
+            } else {
+                const span = document.createElement('span');
+                span.textContent = segment.name;
+                span.style.color = 'var(--gray-color)';
+                container.appendChild(span);
+            }
+        });
+    }
+</script>

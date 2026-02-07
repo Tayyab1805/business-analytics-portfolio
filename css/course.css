@@ -1,0 +1,333 @@
+/* ===== COURSE PAGE STYLES ===== */
+
+.course-detail-header {
+    background: linear-gradient(135deg, var(--primary-color), #4a6fa5);
+    color: var(--white);
+    padding: 3rem 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.course-header-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.course-icon {
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.course-header-text {
+    flex: 1;
+}
+
+.course-header-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.course-code-large {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 15px;
+}
+
+.course-stats {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+.course-teacher-card {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 10px;
+    margin: 2rem 0;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.teacher-avatar-large {
+    width: 80px;
+    height: 80px;
+    background: var(--secondary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.teacher-details h3 {
+    margin: 0 0 10px 0;
+    color: var(--primary-color);
+}
+
+.teacher-contact {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.teacher-contact a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.course-description {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 10px;
+    margin: 2rem 0;
+    box-shadow: var(--shadow);
+}
+
+.course-description h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lectures-section {
+    margin: 3rem 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.next-lecture-badge {
+    background: var(--accent-color);
+    color: var(--white);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lectures-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.lecture-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border-left: 4px solid var(--secondary-color);
+}
+
+.lecture-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.lecture-card.completed {
+    border-left-color: var(--success-color);
+    opacity: 0.9;
+}
+
+.lecture-card.upcoming {
+    border-left-color: var(--warning-color);
+}
+
+.lecture-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.lecture-number {
+    background: var(--light-color);
+    color: var(--primary-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.lecture-status {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status-completed {
+    background: #d5f4e6;
+    color: var(--success-color);
+}
+
+.status-upcoming {
+    background: #fff3cd;
+    color: var(--warning-color);
+}
+
+.lecture-card h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: var(--primary-color);
+    min-height: 60px;
+}
+
+.lecture-meta {
+    display: flex;
+    justify-content: space-between;
+    color: var(--gray-color);
+    font-size: 0.9rem;
+    margin: 15px 0;
+    padding-top: 15px;
+    border-top: 1px solid var(--light-gray);
+}
+
+.lecture-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-lecture {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-read {
+    background: var(--secondary-color);
+    color: var(--white);
+}
+
+.btn-read:hover {
+    background: #2980b9;
+}
+
+.btn-download {
+    background: var(--success-color);
+    color: var(--white);
+}
+
+.btn-download:hover {
+    background: #219653;
+}
+
+.course-resources {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 10px;
+    margin: 2rem 0;
+    box-shadow: var(--shadow);
+}
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.resource-item {
+    background: var(--light-color);
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+.resource-item:hover {
+    background: var(--secondary-color);
+    color: var(--white);
+}
+
+.resource-item:hover i {
+    color: var(--white);
+}
+
+.resource-item i {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+}
+
+/* Empty lectures state */
+.empty-lectures {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.empty-lectures i {
+    font-size: 4rem;
+    color: var(--light-gray);
+    margin-bottom: 20px;
+}
+
+.btn-add-lecture {
+    background: var(--success-color);
+    color: var(--white);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.btn-add-lecture:hover {
+    background: #219653;
+}

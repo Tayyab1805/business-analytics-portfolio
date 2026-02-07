@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semester Details - Business Analytics Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/semester.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="navbar-container"></div>
+
+    <main class="container">
+        <div id="breadcrumb-container"></div>
+
+        <div class="semester-header" id="semester-header">
+            <h1 id="semester-name">Loading Semester...</h1>
+            <p id="semester-description"></p>
+            <div class="semester-meta">
+                <span id="semester-status"></span>
+                <span><i class="fas fa-book"></i> <span id="course-count">0</span> Courses</span>
+                <span><i class="fas fa-chalkboard-teacher"></i> <span id="teacher-count">0</span> Teachers</span>
+            </div>
+        </div>
+
+        <div class="progress-container">
+            <h3><i class="fas fa-chart-bar"></i> Semester Progress</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+            <div class="progress-stats">
+                <span>Completed: <span id="completed-count">0</span> lectures</span>
+                <span>Total: <span id="total-lectures">0</span> lectures</span>
+                <span id="progress-percentage">0%</span>
+            </div>
+        </div>
+
+        <section class="courses-section">
+            <div class="section-header">
+                <h2><i class="fas fa-book-open"></i> Courses in this Semester</h2>
+                <div class="filter-options">
+                    <select id="course-filter">
+                        <option value="all">All Courses</option>
+                        <option value="completed">Completed</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="upcoming">Upcoming</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="courses-grid" id="courses-container">
+                <!-- Courses will be loaded here -->
+            </div>
+        </section>
+
+        <section class="semester-summary">
+            <h2><i class="fas fa-chart-pie"></i> Semester Summary</h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <i class="fas fa-clock"></i>
+                    <h4 id="total-hours">0</h4>
+                    <p>Total Lecture Hours</p>
+                </div>
+                <div class="summary-item">
+                    <i class="fas fa-file-alt"></i>
+                    <h4 id="total-notes">0</h4>
+                    <p>Lecture Notes</p>
+                </div>
+                <div class="summary-item">
+                    <i class="fas fa-tasks"></i>
+                    <h4 id="assignments-count">0</h4>
+                    <p>Assignments</p>
+                </div>
+                <div class="summary-item">
+                    <i class="fas fa-calendar-check"></i>
+                    <h4 id="completion-rate">0%</h4>
+                    <p>Completion Rate</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script>
+        // Load components
+        Promise.all([
+            fetch('components/navbar.html').then(r => r.text()),
+            fetch('components/breadcrumb.html').then(r => r.text()),
+            fetch('components/footer.html').then(r => r.text()),
+            fetch('data/courses.json').then(r => r.json())
+        ]).then(([navbar, breadcrumb, footer, data]) => {
+            // Set navbar
+            document.getElementById('navbar-container').innerHTML = navbar;
+            
+            // Set breadcrumb
+            document.getElementById('breadcrumb-container').innerHTML = breadcrumb;
+            
+            // Set footer
+            document.getElementById('footer-container').innerHTML = footer;
+            
+            // Get semester ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const semesterId = parseInt(urlParams.get('id')) || 1;
+            
+            // Find semester data
+            const semester = data.semesters.find(s => s.id === semesterId);
+            
+            if (semester) {
+                displaySemester(semester);
+                updateBreadcrumb([
+                    { name: semester.name, link: `semester.html?id=${semester.id}` }
+                ]);
+            } else {
+                displayError();
+            }
+            
+            // Set active nav
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes('index')) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        function displaySemester(semester) {
+            // Update header
+            document.getElementById('semester-name').textContent = semester.name;
+            document.getElementById('semester-description').textContent = semester.description;
+            document.getElementById('course-count').textContent = semester.courses.length;
+            document.getElementById('teacher-count').textContent = new Set(semester.courses.map(c => c.teacher)).size;
+            
+            // Update status
+            const statusElement = document.getElementById('semester-status');
+            statusElement.textContent = semester.status === 'completed' ? '✓ Completed' : 
+                                      semester.status === 'in-progress' ? '● In Progress' : 'Upcoming';
+            statusElement.className = semester.status === 'completed' ? 'status completed' :
+                                    semester.status === 'in-progress' ? 'status in-progress' : 'status upcoming';
+            
+            // Calculate progress
+            const totalLectures = semester.courses.reduce((sum, course) => sum + course.lectures, 0);
+            const completedLectures = Math.floor(totalLectures * (semester.status === 'completed' ? 1 : 0.6));
+            const percentage = Math.round((completedLectures / totalLectures) * 100);
+            
+            document.getElementById('completed-count').textContent = completedLectures;
+            document.getElementById('total-lectures').textContent = totalLectures;
+            document.getElementById('progress-percentage').textContent = percentage + '%';
+            document.getElementById('progress-fill').style.width = percentage + '%';
+            
+            // Update summary
+            document.getElementById('total-hours').textContent = totalLectures * 1.5; // 1.5 hours per lecture
+            document.getElementById('total-notes').textContent = totalLectures;
+            document.getElementById('assignments-count').textContent = semester.courses.length * 2; // 2 assignments per course
+            document.getElementById('completion-rate').textContent = percentage + '%';
+            
+            // Display courses
+            displayCourses(semester.courses);
+            
+            // Setup filter
+            document.getElementById('course-filter').addEventListener('change', function() {
+                filterCourses(this.value, semester.courses);
+            });
+        }
+
+        function displayCourses(courses) {
+            const container = document.getElementById('courses-container');
+            container.innerHTML = '';
+            
+            courses.forEach(course => {
+                const courseCard = document.createElement('div');
+                courseCard.className = 'course-card';
+                
+                // Get initials for avatar
+                const initials = course.teacher.split(' ').map(n => n[0]).join('');
+                
+                courseCard.innerHTML = `
+                    <div class="course-image" style="background: ${course.color || '#3498db'}">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-header">
+                            <span class="course-code">${course.code}</span>
+                            <span class="lecture-count">
+                                <i class="fas fa-chalkboard"></i> ${course.lectures} lectures
+                            </span>
+                        </div>
+                        <h3>${course.name}</h3>
+                        <p>${course.description}</p>
+                        
+                        <div class="course-teacher">
+                            <div class="teacher-avatar">${initials}</div>
+                            <div class="teacher-info">
+                                <h4>${course.teacher}</h4>
+                                <p>Course Instructor</p>
+                            </div>
+                        </div>
+                        
+                        <div class="course-actions">
+                            <button class="btn-course btn-view-course" onclick="viewCourse('${course.id}')">
+                                <i class="fas fa-eye"></i> View Course
+                            </button>
+                            <button class="btn-course btn-syllabus">
+                                <i class="fas fa-file-pdf"></i> Syllabus
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(courseCard);
+            });
+        }
+
+        function filterCourses(filter, courses) {
+            const container = document.getElementById('courses-container');
+            container.innerHTML = '';
+            
+            let filteredCourses = courses;
+            
+            // In a real app, you would filter based on actual completion status
+            // For now, we'll just simulate filtering
+            if (filter === 'completed') {
+                filteredCourses = courses.slice(0, 2); // First 2 as completed
+            } else if (filter === 'in-progress') {
+                filteredCourses = courses.slice(2, 4); // Next 2 as in progress
+            } else if (filter === 'upcoming') {
+                filteredCourses = courses.slice(4); // Last 2 as upcoming
+            }
+            
+            displayCourses(filteredCourses);
+        }
+
+        function viewCourse(courseId) {
+            window.location.href = `course.html?id=${courseId}`;
+        }
+
+        function displayError() {
+            document.getElementById('semester-name').textContent = 'Semester Not Found';
+            document.getElementById('courses-container').innerHTML = `
+                <div class="empty-courses">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <h3>Semester data not found</h3>
+                    <p>The requested semester could not be loaded.</p>
+                    <button class="btn-view" onclick="window.location.href='index.html'">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </button>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
