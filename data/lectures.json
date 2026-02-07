@@ -1,0 +1,88 @@
+{
+  "courses": {
+    "BA101": {
+      "total": 15,
+      "completed": 5,
+      "lectures": [
+        {
+          "id": 1,
+          "title": "Introduction to Business Mathematics",
+          "date": "2024-01-15",
+          "duration": "1.5 hours",
+          "status": "completed",
+          "keywords": ["mathematics", "basics", "introduction"],
+          "resources": ["slides.pdf", "worksheet.docx"]
+        },
+        {
+          "id": 2,
+          "title": "Algebraic Applications in Business",
+          "date": "2024-01-22",
+          "duration": "1.5 hours",
+          "status": "completed",
+          "keywords": ["algebra", "equations", "applications"],
+          "resources": ["slides.pdf", "practice.pdf"]
+        },
+        {
+          "id": 3,
+          "title": "Calculus in Business Analysis",
+          "date": "2024-01-29",
+          "duration": "1.5 hours",
+          "status": "completed",
+          "keywords": ["calculus", "derivatives", "optimization"],
+          "resources": ["slides.pdf", "problems.pdf"]
+        },
+        {
+          "id": 4,
+          "title": "Financial Mathematics",
+          "date": "2024-02-05",
+          "duration": "1.5 hours",
+          "status": "completed",
+          "keywords": ["finance", "interest", "investments"],
+          "resources": ["slides.pdf", "case_study.pdf"]
+        },
+        {
+          "id": 5,
+          "title": "Probability Theory for Business",
+          "date": "2024-02-12",
+          "duration": "1.5 hours",
+          "status": "completed",
+          "keywords": ["probability", "statistics", "risk"],
+          "resources": ["slides.pdf", "exercises.pdf"]
+        },
+        {
+          "id": 6,
+          "title": "Statistical Inference",
+          "date": "2024-02-19",
+          "duration": "1.5 hours",
+          "status": "in-progress",
+          "keywords": ["statistics", "inference", "hypothesis"],
+          "resources": ["slides.pdf"]
+        },
+        {
+          "id": 7,
+          "title": "Regression Analysis",
+          "date": "2024-02-26",
+          "duration": "1.5 hours",
+          "status": "upcoming",
+          "keywords": ["regression", "analysis", "prediction"],
+          "resources": []
+        }
+      ]
+    },
+    "BA102": {
+      "total": 12,
+      "completed": 3,
+      "lectures": [
+        {
+          "id": 1,
+          "title": "Introduction to Management",
+          "date": "2024-01-16",
+          "duration": "1.5 hours",
+          "status": "completed",
+          "keywords": ["management", "basics", "principles"],
+          "resources": ["slides.pdf"]
+        }
+      ]
+    }
+  }
+}

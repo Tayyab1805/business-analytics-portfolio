@@ -1,0 +1,88 @@
+{
+  "teachers": [
+    {
+      "id": "RK001",
+      "name": "Dr. Rajesh Kumar",
+      "email": "rajesh.kumar@university.edu",
+      "department": "Mathematics & Statistics",
+      "qualification": "Ph.D. in Applied Mathematics",
+      "office": "Room 301, Math Building",
+      "officeHours": "Mon, Wed 2-4 PM",
+      "phone": "+91 9876543210",
+      "website": "https://university.edu/rkumar",
+      "bio": "Specialized in Business Mathematics with 15 years of teaching experience. Published over 20 research papers in applied mathematics.",
+      "courses": ["BA101", "BA301"],
+      "avatarColor": "#3498db"
+    },
+    {
+      "id": "AS002",
+      "name": "Prof. Anjali Sharma",
+      "email": "anjali.sharma@university.edu",
+      "department": "Management Studies",
+      "qualification": "Ph.D. in Business Management",
+      "office": "Room 205, Management Building",
+      "officeHours": "Tue, Thu 10-12 PM",
+      "phone": "+91 9876543211",
+      "website": "https://university.edu/asharma",
+      "bio": "Expert in organizational behavior and strategic management. Industry experience of 10 years before academia.",
+      "courses": ["BA102", "BA205"],
+      "avatarColor": "#e74c3c"
+    },
+    {
+      "id": "AP003",
+      "name": "Dr. Amit Patel",
+      "email": "amit.patel@university.edu",
+      "department": "Statistics",
+      "qualification": "Ph.D. in Statistics",
+      "office": "Room 410, Statistics Building",
+      "officeHours": "Mon-Fri 3-5 PM",
+      "phone": "+91 9876543212",
+      "website": "https://university.edu/apateL",
+      "bio": "Specialized in statistical modeling and data analysis. Consultant for several Fortune 500 companies.",
+      "courses": ["BA103", "BA203"],
+      "avatarColor": "#2ecc71"
+    },
+    {
+      "id": "SV004",
+      "name": "Prof. Sanjay Verma",
+      "email": "sanjay.verma@university.edu",
+      "department": "Commerce",
+      "qualification": "Ph.D. in Accounting, CPA",
+      "office": "Room 108, Commerce Building",
+      "officeHours": "Wed, Fri 11-1 PM",
+      "phone": "+91 9876543213",
+      "website": "https://university.edu/sverma",
+      "bio": "Chartered Accountant with 20 years of industry experience. Expert in financial accounting and auditing.",
+      "courses": ["BA104", "BA303"],
+      "avatarColor": "#9b59b6"
+    },
+    {
+      "id": "PS005",
+      "name": "Dr. Priya Singh",
+      "email": "priya.singh@university.edu",
+      "department": "Communication Studies",
+      "qualification": "Ph.D. in Business Communication",
+      "office": "Room 302, Arts Building",
+      "officeHours": "Tue, Thu 2-4 PM",
+      "phone": "+91 9876543214",
+      "website": "https://university.edu/psingh",
+      "bio": "Expert in business communication and professional writing. Published author of 3 books on communication skills.",
+      "courses": ["BA105", "BA305"],
+      "avatarColor": "#f39c12"
+    },
+    {
+      "id": "VM006",
+      "name": "Prof. Vikram Mehta",
+      "email": "vikram.mehta@university.edu",
+      "department": "Business Analytics",
+      "qualification": "Ph.D. in Data Science, MBA",
+      "office": "Room 501, Analytics Center",
+      "officeHours": "Mon, Wed, Fri 9-11 AM",
+      "phone": "+91 9876543215",
+      "website": "https://university.edu/vmehta",
+      "bio": "Pioneer in business analytics education. Former data scientist at leading tech companies.",
+      "courses": ["BA106", "BA401"],
+      "avatarColor": "#1abc9c"
+    }
+  ]
+}
