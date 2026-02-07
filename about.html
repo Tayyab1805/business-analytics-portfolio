@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Business Analytics Course Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="navbar-container"></div>
+
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> <i class="fas fa-chevron-right"></i>
+            <span>About</span>
+        </div>
+
+        <section class="about-section">
+            <h1><i class="fas fa-info-circle"></i> About This Platform</h1>
+            
+            <div class="about-content">
+                <div class="about-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>For Students, By Students</h3>
+                    <p>Created by a 4th semester Business Analytics student to organize academic materials efficiently.</p>
+                </div>
+
+                <div class="about-card">
+                    <i class="fas fa-sitemap"></i>
+                    <h3>Structured Learning</h3>
+                    <p>All your course materials organized by semester, course, and lecture for easy access.</p>
+                </div>
+
+                <div class="about-card">
+                    <i class="fas fa-file-pdf"></i>
+                    <h3>PDF Ready Notes</h3>
+                    <p>Download well-formatted lecture notes with proper headings, lists, and table of contents.</p>
+                </div>
+
+                <div class="about-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Fully Responsive</h3>
+                    <p>Access your materials on any device - desktop, tablet, or mobile.</p>
+                </div>
+            </div>
+
+            <div class="features-list">
+                <h2><i class="fas fa-star"></i> Key Features</h2>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Semester-wise course organization</li>
+                    <li><i class="fas fa-check-circle"></i> Automatic lecture counting</li>
+                    <li><i class="fas fa-check-circle"></i> Teacher information for each course</li>
+                    <li><i class="fas fa-check-circle"></i> Easy content management with Markdown</li>
+                    <li><i class="fas fa-check-circle"></i> Professional PDF generation</li>
+                    <li><i class="fas fa-check-circle"></i> Clean, intuitive interface</li>
+                    <li><i class="fas fa-check-circle"></i> GitHub Pages hosting</li>
+                    <li><i class="fas fa-check-circle"></i> Social integration for networking</li>
+                </ul>
+            </div>
+
+            <div class="tech-stack">
+                <h2><i class="fas fa-code"></i> Technology Stack</h2>
+                <div class="tech-icons">
+                    <span class="tech-icon"><i class="fab fa-html5"></i> HTML5</span>
+                    <span class="tech-icon"><i class="fab fa-css3-alt"></i> CSS3</span>
+                    <span class="tech-icon"><i class="fab fa-js"></i> JavaScript</span>
+                    <span class="tech-icon"><i class="fab fa-github"></i> GitHub Pages</span>
+                    <span class="tech-icon"><i class="fas fa-file-alt"></i> Markdown</span>
+                    <span class="tech-icon"><i class="fas fa-print"></i> jsPDF</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Business Analytics Course Hub &copy; 2024</p>
+        <p>Designed for Students • Hosted on GitHub Pages</p>
+    </footer>
+
+    <script>
+        fetch('components/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+                // Set active nav
+                const navLinks = document.querySelectorAll('.nav-links a');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes('about')) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+    </script>
+</body>
+</html>

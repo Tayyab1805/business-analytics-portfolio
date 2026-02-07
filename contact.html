@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Business Analytics Course Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="navbar-container"></div>
+
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> <i class="fas fa-chevron-right"></i>
+            <span>Contact</span>
+        </div>
+
+        <section class="contact-section">
+            <h1><i class="fas fa-envelope"></i> Connect With Me</h1>
+            <p class="section-subtitle">Student | Business Analytics | 4th Semester</p>
+            
+            <div class="contact-grid">
+                <!-- LinkedIn -->
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-card linkedin">
+                    <i class="fab fa-linkedin"></i>
+                    <h3>LinkedIn</h3>
+                    <p>Connect professionally</p>
+                    <span class="contact-link">linkedin.com/in/yourprofile</span>
+                </a>
+
+                <!-- GitHub -->
+                <a href="https://github.com/yourusername" target="_blank" class="contact-card github">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub</h3>
+                    <p>View my projects</p>
+                    <span class="contact-link">github.com/yourusername</span>
+                </a>
+
+                <!-- YouTube -->
+                <a href="https://youtube.com/yourchannel" target="_blank" class="contact-card youtube">
+                    <i class="fab fa-youtube"></i>
+                    <h3>YouTube</h3>
+                    <p>Learning tutorials</p>
+                    <span class="contact-link">youtube.com/yourchannel</span>
+                </a>
+
+                <!-- WhatsApp -->
+                <a href="https://wa.me/yournumber" target="_blank" class="contact-card whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>Quick chat</p>
+                    <span class="contact-link">+91 XXXXX XXXXX</span>
+                </a>
+
+                <!-- Portfolio -->
+                <a href="https://yourportfolio.com" target="_blank" class="contact-card portfolio">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Portfolio</h3>
+                    <p>View my work</p>
+                    <span class="contact-link">yourportfolio.com</span>
+                </a>
+
+                <!-- Kaggle -->
+                <a href="https://kaggle.com/yourprofile" target="_blank" class="contact-card kaggle">
+                    <i class="fab fa-kaggle"></i>
+                    <h3>Kaggle</h3>
+                    <p>Data science projects</p>
+                    <span class="contact-link">kaggle.com/yourprofile</span>
+                </a>
+            </div>
+
+            <div class="contact-info">
+                <h2><i class="fas fa-user-graduate"></i> Student Information</h2>
+                <div class="info-card">
+                    <p><strong>Program:</strong> Business Analytics</p>
+                    <p><strong>Semester:</strong> 4th</p>
+                    <p><strong>University:</strong> [Your University Name]</p>
+                    <p><strong>Email:</strong> student.email@university.edu</p>
+                    <p><strong>Location:</strong> [Your City, Country]</p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2><i class="fas fa-paper-plane"></i> Send a Message</h2>
+                <form id="messageForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+                <p class="form-note">Note: This is a demo form. For actual contact, use the social links above.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Business Analytics Course Hub &copy; 2024</p>
+        <p>Designed for Students • Hosted on GitHub Pages</p>
+    </footer>
+
+    <script>
+        fetch('components/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+                // Set active nav
+                const navLinks = document.querySelectorAll('.nav-links a');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes('contact')) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+        // Form submission
+        document.getElementById('messageForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! This is a demo form. Please use the social links for actual contact.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

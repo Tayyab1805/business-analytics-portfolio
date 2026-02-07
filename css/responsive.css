@@ -1,0 +1,157 @@
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Large Desktop */
+@media (max-width: 1200px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+    .semesters-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .features-list ul {
+        columns: 1;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    /* Navbar */
+    .menu-toggle {
+        display: block;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        background: var(--primary-color);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        transition: var(--transition);
+        z-index: 999;
+    }
+    
+    .nav-links.active {
+        left: 0;
+    }
+    
+    .nav-links a {
+        width: 100%;
+        justify-content: center;
+        padding: 15px;
+    }
+    
+    /* Hero */
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .student-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    /* Stats */
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-card {
+        padding: 20px;
+    }
+    
+    /* Contact */
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+    
+    /* Cards */
+    .semester-card,
+    .about-card,
+    .contact-card {
+        padding: 20px;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .hero {
+        padding: 2rem 1rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .semesters-section h2,
+    .quick-stats h2 {
+        font-size: 1.5rem;
+    }
+    
+    .btn-add,
+    .btn-submit {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .tech-icons {
+        justify-content: center;
+    }
+    
+    .tech-icon {
+        font-size: 0.9rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .btn-view,
+    .btn-add,
+    .contact-form,
+    footer {
+        display: none !important;
+    }
+    
+    .container {
+        padding: 0;
+        max-width: 100%;
+    }
+    
+    .semester-card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+    }
+}

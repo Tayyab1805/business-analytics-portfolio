@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Analytics - Course Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation will be loaded here -->
+    <div id="navbar-container"></div>
+
+    <main class="container">
+        <header class="hero">
+            <h1>Business Analytics Course Hub</h1>
+            <p>Track your academic journey semester by semester</p>
+            <div class="student-info">
+                <span><i class="fas fa-user-graduate"></i> 4th Semester Student</span>
+                <span><i class="fas fa-book"></i> Business Analytics</span>
+            </div>
+        </header>
+
+        <section class="semesters-section">
+            <h2><i class="fas fa-calendar-alt"></i> My Semesters</h2>
+            <p class="section-subtitle">Click on any semester to view courses</p>
+            
+            <div class="semesters-grid" id="semesters-container">
+                <!-- Semester cards will be loaded dynamically -->
+            </div>
+
+            <div class="add-semester">
+                <button class="btn-add" id="add-semester-btn">
+                    <i class="fas fa-plus-circle"></i> Add New Semester
+                </button>
+            </div>
+        </section>
+
+        <section class="quick-stats">
+            <h2><i class="fas fa-chart-line"></i> Quick Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>4</h3>
+                    <p>Semesters</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-book-open"></i>
+                    <h3>24</h3>
+                    <p>Total Courses</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>15+</h3>
+                    <p>Teachers</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-file-pdf"></i>
+                    <h3>100+</h3>
+                    <p>Lecture Notes</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Business Analytics Course Hub &copy; 2024</p>
+        <p>Designed for Students • Hosted on GitHub Pages</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        // Load navbar
+        fetch('components/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+                setActiveNav('home');
+            });
+
+        // Load semesters
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSemesters();
+            
+            // Add semester button functionality
+            document.getElementById('add-semester-btn').addEventListener('click', function() {
+                const semesters = document.getElementById('semesters-container');
+                const nextNum = semesters.children.length + 1;
+                
+                const newSemester = document.createElement('div');
+                newSemester.className = 'semester-card';
+                newSemester.innerHTML = `
+                    <div class="semester-header">
+                        <span class="semester-badge">Semester ${nextNum}</span>
+                        <span class="status upcoming">Upcoming</span>
+                    </div>
+                    <h3>Semester ${nextNum}</h3>
+                    <p>Courses will be added soon</p>
+                    <div class="course-count">
+                        <i class="fas fa-book"></i> 0 Courses
+                    </div>
+                    <button class="btn-view" onclick="window.location.href='semester.html?id=${nextNum}'">
+                        View Details <i class="fas fa-arrow-right"></i>
+                    </button>
+                `;
+                semesters.appendChild(newSemester);
+                alert(`Semester ${nextNum} added! You can now add courses to it.`);
+            });
+        });
+
+        function loadSemesters() {
+            const semesters = [
+                { id: 1, name: "Semester 1", courses: 6, status: "completed" },
+                { id: 2, name: "Semester 2", courses: 6, status: "completed" },
+                { id: 3, name: "Semester 3", courses: 6, status: "completed" },
+                { id: 4, name: "Semester 4", courses: 6, status: "in-progress" }
+            ];
+
+            const container = document.getElementById('semesters-container');
+            
+            semesters.forEach(semester => {
+                const semesterCard = document.createElement('div');
+                semesterCard.className = 'semester-card';
+                semesterCard.innerHTML = `
+                    <div class="semester-header">
+                        <span class="semester-badge">${semester.name}</span>
+                        <span class="status ${semester.status}">
+                            ${semester.status === 'completed' ? '✓ Completed' : 
+                              semester.status === 'in-progress' ? '● In Progress' : 'Upcoming'}
+                        </span>
+                    </div>
+                    <h3>${semester.name}</h3>
+                    <p>${semester.courses} Courses</p>
+                    <div class="course-count">
+                        <i class="fas fa-book"></i> ${semester.courses} Courses
+                    </div>
+                    <button class="btn-view" onclick="window.location.href='semester.html?id=${semester.id}'">
+                        View Courses <i class="fas fa-arrow-right"></i>
+                    </button>
+                `;
+                container.appendChild(semesterCard);
+            });
+        }
+
+        function setActiveNav(page) {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(page)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

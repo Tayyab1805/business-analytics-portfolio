@@ -1,0 +1,45 @@
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href="index.html">
+                <i class="fas fa-chart-line"></i>
+                <span>BizAnalytics Hub</span>
+            </a>
+        </div>
+        
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="active">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="about.html">
+                <i class="fas fa-info-circle"></i> About
+            </a>
+            <a href="contact.html">
+                <i class="fas fa-envelope"></i> Contact
+            </a>
+            <div class="nav-actions">
+                <a href="https://github.com/yourusername" target="_blank" class="github-link">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+        }
+    });
+</script>
